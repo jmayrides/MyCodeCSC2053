@@ -32,7 +32,7 @@ var printBoard = function () {
 
             } else {
 
-                curr.style.font.color = 'red';
+                curr.style.fontWeight = 'normal';
 
             }
 
@@ -45,7 +45,7 @@ var printBoard = function () {
 var solve = function () {
 
     var curr, location, tempI, tempJ;
-    var satisfies = true;
+    var satisfies;
     var lastSaved = [];
 
     //loop through whole board
@@ -169,6 +169,22 @@ var solve = function () {
             }
 
         }
+
+    }
+
+}
+
+var newPuzzle = function() {
+
+    var request = new XMLHttpRequest();
+
+    request.open("GET", "https://sugoku.herokuapp.com/board?difficulty=medium", true);
+    request.send();
+    request.onload = function(){
+
+        var data = JSON.parse(this.response);
+        sol = data.board;
+        printBoard();
 
     }
 
